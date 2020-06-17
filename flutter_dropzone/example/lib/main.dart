@@ -9,7 +9,7 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  static const int count = 8;
+  static const int count = 16;
 
   Map<int, DropzoneViewController> controllers = {};
   Map<int, String> messages = {};
@@ -28,24 +28,16 @@ class _MyAppState extends State<MyApp> {
             title: const Text('Dropzone example'),
           ),
           body: Column(
-            children: [
-              Expanded(
+            children: List.generate(count, (index) {
+              return Expanded(
                 child: Stack(
                   children: [
-                    buildZone(context, 0),
-                    Center(child: Text(messages[0])),
+                    buildZone(context, index),
+                    Center(child: Text(messages[index])),
                   ],
                 ),
-              ),
-              Expanded(
-                child: Stack(
-                  children: [
-                    buildZone(context, 1),
-                    Center(child: Text(messages[1])),
-                  ],
-                ),
-              ),
-            ],
+              );
+            }),
           ),
         ),
       );
